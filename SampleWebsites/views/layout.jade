@@ -1,0 +1,36 @@
+doctype html
+html(lang='en')
+    head
+        title Welcome
+        link(href='/stylesheets/lib/bootstrap/bootstrap.min.css', rel='stylesheet')
+        link(href='/stylesheets/lib/bootstrap/bootstrap-grid.min.css', rel='stylesheet')
+        link(href='/stylesheets/lib/bootstrap/bootstrap-reboot.min.css', rel='stylesheet')
+        link(href='/stylesheets/style.css', rel='stylesheet')
+body
+    nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
+        .container
+            .navbar-header
+                a.navbar-brand(href="/") [Calipso]
+            .collapse.navbar-collapse
+                ul.navbar-nav.mr-auto
+                    li.nav-item(class=(title == 'Members' ? 'active' : ''))
+                        a.nav-link( href="/" ) Members
+                    if user
+                        li.nav-item(class=(title == 'Profile' ? 'active' : ''))
+                            a.nav-link( href="/users/profile" ) Profile
+                    if !user
+                        li.nav-item(class=(title == 'Register' ? 'active' : ''))
+                            a.nav-link( href="/users/register" ) Register
+                        li.nav-item(class=(title == 'Login' ? 'active' : ''))
+                            a.nav-link( href="/users/login" ) Login
+                ul.nav.navbar-nav.navbar-right
+                    if user
+                        li
+                            a.nav-link( href="/users/logout" ) Logout
+    .container
+        != messages()
+        block content
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+    script(src='https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js')
+    script(src='https://npmcdn.com/bootstrap@4.0.0-alpha.5/dist/js/bootstrap.min.js')
